@@ -1,0 +1,28 @@
+package com.raul.api.tak_manager.infrastructure.adapters.controllers;
+
+import com.raul.api.tak_manager.application.services.TaskService;
+import com.raul.api.tak_manager.domain.model.Task;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/api/tasks")
+public class TaskController {
+
+    private final TaskService taskService;
+
+    public TaskController(TaskService taskService) {
+        this.taskService = taskService;
+    }
+
+    @PostMapping
+    public Task createTask(@RequestBody Task task) {
+        return taskService.create(task);
+    }
+
+    @GetMapping
+    public List<Task> getAll() {
+        return taskService.getAllTasks();
+    }
+}
