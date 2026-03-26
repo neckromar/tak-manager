@@ -4,6 +4,8 @@ import com.raul.api.tak_manager.domain.model.Task;
 import com.raul.api.tak_manager.domain.ports.TaskRepository;
 
 import java.util.List;
+
+import com.raul.api.tak_manager.domain.exceptions.ListaVaciaException;
 import com.raul.api.tak_manager.domain.exceptions.TaskNotFoundException;
 
 public class TaskService {
@@ -18,7 +20,12 @@ public class TaskService {
     }
 
     public List<Task> getAllTasks() {
-        return taskRepositoryPort.findAll();
+        List<Task> tasks = taskRepositoryPort.findAll();
+        if(tasks.isEmpty()){
+                throw new ListaVaciaException("ACTUALMENTE LA LISTA ESTA VACIA");
+        }
+        return tasks;
+    
     }
 
     public Task getTaskById(Long id){
