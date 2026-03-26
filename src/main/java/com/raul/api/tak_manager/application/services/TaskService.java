@@ -36,4 +36,16 @@ public class TaskService {
         taskRepositoryPort.deleteById(id);
 
     }
+
+    //actualizar 
+    public Task actualizarTask(Long id, Task taskDetalles){
+        //primero ver si existe , luego actualizar y por ultimo guardar
+        Task existeTask=this.getTaskById(id);
+
+        existeTask.setTitle(taskDetalles.getTitle());
+        existeTask.setDescription(taskDetalles.getDescription());
+        existeTask.setCompleted(taskDetalles.isCompleted());
+
+        return taskRepositoryPort.actualizar(existeTask);
+    }
 }

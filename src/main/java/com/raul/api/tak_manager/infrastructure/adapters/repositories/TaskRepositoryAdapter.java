@@ -42,4 +42,12 @@ public class TaskRepositoryAdapter implements TaskRepository {
        jpaTaskRepository.deleteById(id);
         
     }
+
+    @Override
+    public Task actualizar(Task task){
+        TaskEntity entidad=new TaskEntity(task.getId(),task.getTitle(),task.getDescription(),task.isCompleted());
+        TaskEntity actualizarEndidad= jpaTaskRepository.save(entidad);
+
+        return new Task(actualizarEndidad.getId(),actualizarEndidad.getTitle(),actualizarEndidad.getDescription(),actualizarEndidad.isCompleted());
+    }
 }
