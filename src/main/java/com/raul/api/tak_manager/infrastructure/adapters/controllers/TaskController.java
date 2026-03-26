@@ -2,6 +2,8 @@ package com.raul.api.tak_manager.infrastructure.adapters.controllers;
 
 import com.raul.api.tak_manager.application.services.TaskService;
 import com.raul.api.tak_manager.domain.model.Task;
+
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -30,6 +32,12 @@ public class TaskController {
     @GetMapping("/{id}")
     public Task getById(@PathVariable Long id) {
         return taskService.getTaskById(id);
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void delete(@PathVariable Long id){
+        taskService.deteleTask(id);
     }
     
 }

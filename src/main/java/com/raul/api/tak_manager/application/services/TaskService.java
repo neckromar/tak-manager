@@ -24,4 +24,9 @@ public class TaskService {
     public Task getTaskById(Long id){
         return taskRepositoryPort.findById(id).orElseThrow(() -> new TaskNotFoundException("La busqueda con ID " + id + " no se encuentra"));
     }
+    public void deteleTask(Long id){
+        this.getTaskById(id);
+        taskRepositoryPort.deleteById(id);
+
+    }
 }

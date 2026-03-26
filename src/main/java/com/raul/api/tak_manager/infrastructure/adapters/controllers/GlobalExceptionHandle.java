@@ -16,6 +16,9 @@ public class GlobalExceptionHandle {
         ErrorResponse error= new ErrorResponse(
             HttpStatus.NOT_FOUND.value(), ex.message, System.currentTimeMillis());
         return new ResponseEntity<>(error,HttpStatus.NOT_FOUND);
+
+
+        
     }
 
 }

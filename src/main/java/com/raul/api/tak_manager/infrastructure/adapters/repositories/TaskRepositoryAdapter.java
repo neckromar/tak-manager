@@ -36,4 +36,10 @@ public class TaskRepositoryAdapter implements TaskRepository {
         return jpaTaskRepository.findById(id)
                 .map(entity -> new Task(entity.getId(), entity.getTitle(), entity.getDescription(), entity.isCompleted()));
     }
+
+    @Override
+    public void deleteById(Long id) {
+       jpaTaskRepository.deleteById(id);
+        
+    }
 }
